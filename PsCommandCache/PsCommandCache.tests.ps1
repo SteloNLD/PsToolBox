@@ -4,13 +4,21 @@
 # You can download Pester from http://go.microsoft.com/fwlink/?LinkID=534084
 #
 
-Describe "Module" {
+Remove-module PsCommandCache 
+
+Describe "PsCommandCache Module" {
 	Context "Module Import" {
-		It "Should Not Throw" {
-			Import-Module .\PsToolBox.psm1
+		It "Import Should Succeed" {
+			Import-Module 'D:\Projects\Visual Studio\2015\PsToolBox\PsCommandCache\PsCommandCache.psm1'
 		}
 		It "Contains Function Invoke-CachedCommand" {
 			Get-Command Invoke-CachedCommand | Should Be $True
 		}
+	}	
+	Context "Invoke-CachedCommand" {
+		It "Should Throw when no parameters a specified" {
+			Invoke-CachedCommand | Should BeOfType System.IO.DirectoryInfo
+		}
 	}
 }
+

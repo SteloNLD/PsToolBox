@@ -30,4 +30,3 @@ Function Invoke-CachedCommand {
 	#Return Cached Results.
 	Return $CachedOutput
 }
-Export-Command Invoke-CachedCommand
