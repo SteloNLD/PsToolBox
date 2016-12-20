@@ -10,23 +10,41 @@ Function Invoke-CachedCommand {
 		[Parameter(Mandatory=$false)][datetime]$TTL = (get-date).AddMinutes(5)
 	)
 	
-	if (($PsCommandCache | Select CachedCommand) -ccontains $ScriptBlock) {
-			return $PsCommandCache | Where-Object {$_.CachedCommand -ceq $ScripBlock}
-	}
-	else {	
-		try{$CachedOutput = & $ScriptBlock} 
-		catch{Log-Error $_; return $_}
-	}
+	$CacheItem = ($Script:PsCommandCache | Where-Object {$_.CachedCommand -ceq $Scriptblock.ToString(})
+	
+	if (($CacheItem -ne $null) -and ($CacheItem.TTL -le (Get-Date))) {
+			$Script:PsCommandCache.Remove($CacheItem)
+			$CacheItem = $null
+	}	
 
-	#Create New Cache Item
-	$CacheItem = New-Object PSObject
-	$CacheItem | Add-Member -type NoteProperty -Name 'CachedCommand' -Value $ScriptBlock
-	$CacheItem | Add-Member -type NoteProperty -Name 'TTL' -Value $TTL
-	$CacheItem | Add-Member -type NoteProperty -Name 'CachedResults' -Value $CachedOutput
+	if ($CacheItem -ne $null)
+	{
+		#Create New Cache Item	
+		$CacheItem = New-Object PSObject
+		$CacheItem | Add-Member -type NoteProperty -Name 'CachedCommand' -Value $ScriptBlock.ToString()
+		$CacheItem | Add-Member -type NoteProperty -Name 'TTL' -Value $TTL
+		$CacheItem | Add-Member -type NoteProperty -Name 'CachedResult' -Value $null
 		
-	#Add Cache Item to the Cache
-	$PsCommandCache += $CacheItem
+		
+		try{
+			$CacheItem.CachedResult = (& $ScriptBlock)
+		}
+		catch{
+			Log-Error $_
+		}		
+		
+		#Add cache item to the global cache	
+		$Script:PsCommandCache += $CacheItem			
+	}
 
-	#Return Cached Results.
-	Return $CachedOutput
+	#Return cached result.
+	Return $CacheItem.CachedResult
+}
+
+[CmdletBinding]
+
+Function Get-CachedCommand {
+	
+	#Return selected cache items from the global cache
+	Return $Script:PsCommandCache
 }
