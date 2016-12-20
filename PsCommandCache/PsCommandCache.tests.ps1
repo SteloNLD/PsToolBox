@@ -6,7 +6,7 @@
 
 Remove-module PsCommandCache
 
-Describe "PsCommandCache Module" {
+Describe "PsCommandCache" {
 	Context "Module Import" {
 		It "import Should Succeed" {
 			{Import-Module "D:\Projects\Visual Studio\2015\PsToolBox\PsCommandCache\PsCommandCache.psm1"} | Should Not Throw

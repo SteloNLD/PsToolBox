@@ -3,14 +3,16 @@
 #$PsCommandCache = @()
 $PsCommandCache = New-Object System.Collections.ArrayList
 
-[CmdletBinding]
+
 
 Function Invoke-CachedCommand {
+
 	Param (		
 		[Parameter(Mandatory=$true)][scriptblock]$ScriptBlock,
 		[Parameter(Mandatory=$false)][datetime]$TTL = (get-date).AddMinutes(5)
 	)
 	
+
 	$CacheItem = ($Script:PsCommandCache | Where-Object {$_.CachedCommand -ceq $Scriptblock.ToString()})
 
 	if (($CacheItem -ne $null) -and ($CacheItem.TTL -le (Get-Date))) {
@@ -40,8 +42,6 @@ Function Invoke-CachedCommand {
 	#Return cached result.
 	Return $CacheItem.CachedResult
 }
-
-[CmdletBinding]
 
 Function Get-CachedCommand {
 	
