@@ -12,10 +12,9 @@ Function Invoke-CachedCommand {
 	)
 	
 	$CacheItem = ($Script:PsCommandCache | Where-Object {$_.CachedCommand -ceq $Scriptblock.ToString()})
-	write-host $CacheItem
 
 	if (($CacheItem -ne $null) -and ($CacheItem.TTL -le (Get-Date))) {
-			$Script:PsCommandCache.Remove($CacheItem)
+			$Script:PsCommandCache.Remove($CacheItem) | Out-Null
 			$CacheItem = $null
 	}	
 
@@ -35,7 +34,7 @@ Function Invoke-CachedCommand {
 		}		
 		
 		#Add cache item to the global cache	
-		$Script:PsCommandCache += $CacheItem
+		$Script:PsCommandCache.Add($CacheItem) | Out-Null
 	}
 
 	#Return cached result.

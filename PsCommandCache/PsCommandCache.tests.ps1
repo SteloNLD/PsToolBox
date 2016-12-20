@@ -4,7 +4,7 @@
 # You can download Pester from http://go.microsoft.com/fwlink/?LinkID=534084
 #
 
-Remove-module PsCommandCache 
+Remove-module PsCommandCache
 
 Describe "PsCommandCache Module" {
 	Context "Module Import" {
