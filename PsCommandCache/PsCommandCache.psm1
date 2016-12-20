@@ -48,3 +48,9 @@ Function Get-CachedCommand {
 	#Return selected cache items from the global cache
 	Return $Script:PsCommandCache
 }
+
+Function Remove-CachedCommand {
+	
+	#Return selected cache items from the global cache
+	$Script:PsCommandCache.Clear() | Out-Null
+}
