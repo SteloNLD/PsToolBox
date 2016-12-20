@@ -1,5 +1,6 @@
 
 
+#$PsCommandCache = @()
 $PsCommandCache = New-Object System.Collections.ArrayList
 
 [CmdletBinding]
@@ -11,7 +12,8 @@ Function Invoke-CachedCommand {
 	)
 	
 	$CacheItem = ($Script:PsCommandCache | Where-Object {$_.CachedCommand -ceq $Scriptblock.ToString()})
-	
+	write-host $CacheItem
+
 	if (($CacheItem -ne $null) -and ($CacheItem.TTL -le (Get-Date))) {
 			$Script:PsCommandCache.Remove($CacheItem)
 			$CacheItem = $null
@@ -33,7 +35,7 @@ Function Invoke-CachedCommand {
 		}		
 		
 		#Add cache item to the global cache	
-		$Script:PsCommandCache.Add($CacheItem)
+		$Script:PsCommandCache += $CacheItem
 	}
 
 	#Return cached result.
