@@ -7,6 +7,8 @@ Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "PsLogHandler", "PsLogHandle
 EndProject
 Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "PsCommandCache", "PsCommandCache\PsCommandCache.pssproj", "{ACB42335-0017-4B29-8DA7-9C7760B7EEE4}"
 EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "PsWebServer", "PsWebServer\PsWebServer.pssproj", "{AA67878B-6CD6-43D4-9690-D27CB5708883}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ACB42335-0017-4B29-8DA7-9C7760B7EEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACB42335-0017-4B29-8DA7-9C7760B7EEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACB42335-0017-4B29-8DA7-9C7760B7EEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA67878B-6CD6-43D4-9690-D27CB5708883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA67878B-6CD6-43D4-9690-D27CB5708883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA67878B-6CD6-43D4-9690-D27CB5708883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA67878B-6CD6-43D4-9690-D27CB5708883}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

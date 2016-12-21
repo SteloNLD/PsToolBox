@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{aa67878b-6cd6-43d4-9690-d27cb5708883}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MyApplication</RootNamespace>
+    <AssemblyName>MyApplication</AssemblyName>
+    <Name>PsWebServer</Name>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="ScriptTemplate\" />
+    <Folder Include="ScriptTemplate\Content\" />
+    <Folder Include="ScriptTemplate\Content\css\" />
+    <Folder Include="ScriptTemplate\Content\fonts\" />
+    <Folder Include="ScriptTemplate\Content\js\" />
+    <Folder Include="ScriptTemplate\Controllers\" />
+    <Folder Include="ScriptTemplate\Views\" />
+    <Folder Include="ScriptTemplate\Views\Reports\" />
+    <Folder Include="ScriptTemplate\Views\Reports\Shared\" />
+    <Folder Include="ScriptTemplate\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PsWebServer.psd1" />
+    <Compile Include="PsWebServer.psm1" />
+    <Compile Include="PsWebServer.tests.ps1" />
+    <Compile Include="ScriptTemplate\Controllers\ReportsController.ps1" />
+    <Compile Include="ScriptTemplate\Start.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScriptTemplate\Content\css\1-bootstrap.min.css" />
+    <Content Include="ScriptTemplate\Content\css\2-ie10-viewport-bug-workaround.css" />
+    <Content Include="ScriptTemplate\Content\css\3-site.css" />
+    <Content Include="ScriptTemplate\Content\favicon.ico" />
+    <Content Include="ScriptTemplate\Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="ScriptTemplate\Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="ScriptTemplate\Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="ScriptTemplate\Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="ScriptTemplate\Content\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="ScriptTemplate\Content\js\2-bootstrap.min.js" />
+    <Content Include="ScriptTemplate\Content\js\1-jquery.min.js" />
+    <Content Include="ScriptTemplate\Views\Reports\Report-PrinterHealth.pshtml" />
+    <Content Include="ScriptTemplate\Views\Reports\Shared\LeftNav.pshtml" />
+    <Content Include="ScriptTemplate\Views\Shared\Layout-footer.pshtml" />
+    <Content Include="ScriptTemplate\Views\Shared\Layout-header.pshtml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Target Name="Build" />
+</Project>
